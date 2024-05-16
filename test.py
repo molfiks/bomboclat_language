@@ -1,3 +1,0 @@
-import lang
-
-lang.run
