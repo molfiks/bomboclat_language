@@ -1,12 +1,11 @@
-#######################################
 # CONSTANTS
-#######################################
+
 
 DIGITS = '0123456789'
 
-#######################################
+
 # ERRORS
-#######################################
+
 
 class Error:
     def __init__(self, pos_start, pos_end, error_name, details):
@@ -24,9 +23,9 @@ class IllegalCharError(Error):
     def __init__(self, pos_start, pos_end, details):
         super().__init__(pos_start, pos_end, 'Illegal Character', details)
 
-#######################################
+
 # POSITION
-#######################################
+
 
 class Position:
     def __init__(self, idx, ln, col, fn, ftxt):
@@ -49,9 +48,8 @@ class Position:
     def copy(self):
         return Position(self.idx, self.ln, self.col, self.fn, self.ftxt)
 
-#######################################
 # TOKENS
-#######################################
+
 
 INT		= 'INT'
 FLOAT    = 'FLOAT'
@@ -71,9 +69,9 @@ class Token:
         if self.value: return f'{self.type}:{self.value}'
         return f'{self.type}'
 
-#######################################
+
 # LEXER
-#######################################
+
 
 class Lexer:
     def __init__(self, fn, text):
@@ -139,9 +137,9 @@ class Lexer:
         else:
             return Token(FLOAT, float(num_str))
 
-#######################################
+
 # PARSER
-#######################################
+
 
 class Parser:
     def __init__(self, tokens):
@@ -188,17 +186,17 @@ class Parser:
                 result -= self.term()
         return result
 
-#######################################
+
 # INTERPRETER
-#######################################
+
 
 def interpret(tokens):
     parser = Parser(tokens)
     return parser.expr()
 
-#######################################
+
 # RUN
-#######################################
+
 
 def run(fn, text):
     lexer = Lexer(fn, text)
