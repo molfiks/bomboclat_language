@@ -5,7 +5,7 @@ public class SimpleWordCalculator {
 
     public static void main(String[] args) {
         while (true) {
-            String userInput = JOptionPane.showInputDialog(null, "İşlem giriniz (örneğin: 3 çarp 5 böl ğ). Çıkmak için 'exit' yazın:");
+            String userInput = JOptionPane.showInputDialog(null, "İşlem giriniz (örneğin: 3 çarp 5 ğ). Çıkmak için 'exit' yazın:");
 
             if (userInput == null || userInput.equalsIgnoreCase("exit")) {
                 break;
