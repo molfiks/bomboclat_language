@@ -5,7 +5,7 @@ public class SimpleWordCalculator {
 
     public static void main(String[] args) {
         while (true) {
-            String userInput = JOptionPane.showInputDialog(null, "İşlem giriniz (örneğin: 3 topla 5 çarp 2). Çıkmak için 'exit' yazın:");
+            String userInput = JOptionPane.showInputDialog(null, "İşlem giriniz (örneğin: 3 çarp 5 böl ğ). Çıkmak için 'exit' yazın:");
 
             if (userInput == null || userInput.equalsIgnoreCase("exit")) {
                 break;
@@ -21,7 +21,15 @@ public class SimpleWordCalculator {
     }
 
     public static double evaluateExpression(String expression) throws Exception {
+
         String trimmedExpression = expression.replaceAll("\\s+", " ").trim();
+        
+        if (!trimmedExpression.endsWith("ğ")) {
+            throw new IllegalArgumentException("Geçersiz işlem: işlem 'ğ' ile bitmelidir");
+        }
+
+        trimmedExpression = trimmedExpression.substring(0, trimmedExpression.length() - 1).trim();
+        
         return evaluate(trimmedExpression);
     }
 
@@ -53,6 +61,7 @@ public class SimpleWordCalculator {
         double b = numbers.pop();
         double a = numbers.pop();
         double result;
+
         switch (operator) {
             case "topla":
                 result = a + b;
@@ -72,6 +81,7 @@ public class SimpleWordCalculator {
             default:
                 throw new IllegalArgumentException("Geçersiz operatör: " + operator);
         }
+
         numbers.push(result);
     }
 
